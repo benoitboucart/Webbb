@@ -1,0 +1,49 @@
+{% extends 'WebbbFormBundle::layout.html.twig' %}
+
+{% block webbbadmin_main_content -%}
+    <h1>Form list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                {#<th>Id</th>#}
+                <th>Name</th>
+                <th>Thankyoutext</th>
+                <th>Recipients</th>
+                <th>Message</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                {#<td><a href="{{ path('form_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>#}
+                <td>{{ entity.name }}</td>
+                <td>{{ entity.thankyoutext }}</td>
+                <td>{{ entity.recipients }}</td>
+                <td>{{ entity.message }}</td>
+                <td>{{ entity.description }}</td>
+                <td>
+                {#<ul>
+                    <li>
+                        <a href="{{ path('form_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>#}
+                        <a href="{{ path('form_edit', { 'id': entity.id }) }}">edit</a>
+                    {#</li>
+                </ul>#}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="{#btn-toolbar#}">
+        <div class="{#btn-group#} record_actions">
+            <a href="{{ path('form_new') }}" class="btn">
+                Create a new entry
+            </a>
+        </div><!-- /.btn-group -->
+    </div><!-- /.btn-toolbar -->
+    {% endblock %}

@@ -1,0 +1,15 @@
+# webbb_widgets:
+#     resource: "@WebbbWidgetsBundle/Controller/"
+#     type:     annotation
+#     prefix:   /
+
+webbb_admin:
+    resource: "@WebbbAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+webbb_form:
+    resource: "@WebbbFormBundle/Controller/"
+    type:     annotation
+    prefix:   /
+

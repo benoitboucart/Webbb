@@ -1,0 +1,50 @@
+{% extends 'WebbbFormBundle::layout.html.twig' %}
+
+{% block webbbadmin_main_content -%}
+    <h1>Form</h1>
+
+    <table class="record_properties">
+        <tbody>
+            {#<tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>#}
+            <tr>
+                <th>Name</th>
+                <td>{{ entity.name }}</td>
+            </tr>
+            <tr>
+                <th>Thankyoutext</th>
+                <td>{{ entity.thankyoutext }}</td>
+            </tr>
+            <tr>
+                <th>Recipients</th>
+                <td>{{ entity.recipients }}</td>
+            </tr>
+            <tr>
+                <th>Message</th>
+                <td>{{ entity.message }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ entity.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="btn-toolbar">
+        <div class="btn-group record_actions">
+            <a href="{{ path('form') }}" class="btn btn-primary">
+                Back to the list
+            </a>
+            <a href="{{ path('form_edit', { 'id': entity.id }) }}" class="btn">
+                Edit
+            </a>
+            <form action="{{ path('form_delete', { 'id': entity.id }) }}" method="post" class="btn btn-danger">
+                <input type="hidden" name="_method" value="DELETE" />
+                {{ form_widget(delete_form) }}
+                <button type="submit">Delete</button>
+            </form>
+        </div><!-- /.btn-group -->
+    </div><!-- /.btn-toolbar -->
+{% endblock %}

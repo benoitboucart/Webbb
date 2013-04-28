@@ -1,0 +1,79 @@
+{{ form_errors(form) }}
+
+<div class="row-fluid">
+	<div class="span6">
+		{{ form_row(form.name) }}
+	</div>
+	<div class="span6">
+		{{ form_row(form.description) }}
+	</div>
+</div><!-- /.row-fluid -->
+
+<div class="row-fluid">
+	<div class="span4">
+		{{ form_row(form.recipients) }}
+	</div>
+	<div class="span4">
+		{{ form_row(form.message) }}
+	</div>
+	<div class="span4">
+		{{ form_row(form.thankyoutext) }}
+	</div>
+</div><!-- /.row-fluid -->
+
+<hr>
+
+{% set mto_itemclass = 'webbb-form-field-li' %}
+{% set mto_item_removeclass = 'webbb-form-remove-field-li' %}
+<div class="todo mrm">
+	<div class="todo-search">
+		{{form_errors(form.fields)}}
+		{{form_label(form.fields)}}
+	</div><!-- /.todo-search -->
+	<div class="webbb-form-fields ">
+	    {# iterate over each existing field and render it #}
+	    <ul class="webbb-mto-container accordion" 
+	    	id="accordion" 
+	    	data-prototype="{% filter escape %}{% include 'WebbbFormBundle:Form/modules/form:form-prototype-fields.html.twig' with {'form': form.fields.vars.prototype} %}{% endfilter %}{#{ form_widget(form.fields.vars.prototype)|e }#}"
+	    	data-mto-itemclass="{{mto_itemclass}}"
+	    	data-mto-itemremoveclass="{{mto_item_removeclass}}"
+	    	data-mto-index="{{ form.fields|length }}"
+	    >
+	    {% for field in form.fields %}
+	    	<li class="{{mto_itemclass}} accordion-group">
+				<div class="accordion-heading">
+					<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse{{loop.index}}">Field {{loop.index}} - {{field.vars.data.name}} [{{field.vars.data.type}}]</a>
+				</div>
+				<div id="collapse{{loop.index}}" class="accordion-body collapse">
+	        		{% include 'WebbbFormBundle:Form/modules/form:form-prototype-fields.html.twig' with {'form': field} %}
+				</div>
+	        </li>
+	    {% endfor %}
+	    </ul>
+	</div><!-- /.webbb-form-fields -->
+	
+	{{form_widget(form.fields)}}
+</div><!-- /.todo mrm -->
+
+{#
+<div class="accordion" id="accordion2">
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">Collapsible Group Item #1</a>
+		</div>
+		<div id="collapseOne" class="accordion-body collapse in">
+			<div class="accordion-inner">Anim pariatur cliche...</div>
+		</div>
+	</div>
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">Collapsible Group Item #2</a>
+		</div>
+		<div id="collapseTwo" class="accordion-body collapse">
+			<div class="accordion-inner">Anim pariatur cliche...</div>
+		</div>
+	</div>
+</div>
+#}
+
+{{ form_widget(form) }}

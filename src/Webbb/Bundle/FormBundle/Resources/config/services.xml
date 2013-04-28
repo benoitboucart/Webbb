@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <!--
+    <parameters>
+        <parameter key="webbb_form.example.class">Webbb\Bundle\FormBundle\Example</parameter>
+    </parameters>
+
+    <services>
+        <service id="webbb_form.example" class="%webbb_form.example.class%">
+            <argument type="service" id="service_id" />
+            <argument>plain_value</argument>
+            <argument>%parameter_name%</argument>
+        </service>
+    </services>
+    -->
+    <parameters>
+        <parameter key="webbb_form.field.field_types" />
+    </parameters>
+    
+    <services>
+        <service id="webbb_form.form.type.form" class="Webbb\Bundle\FormBundle\Form\Type\FormType">
+            <argument type="service" id="webbb_form.form.type.field"/>
+            <tag name="form.type" alias="webbb_bundle_formbundle_formtype" />
+        </service>
+        
+        <service id="webbb_form.form.type.field" class="Webbb\Bundle\FormBundle\Form\Type\FieldType">
+            <argument>%webbb_form.field.field_types%</argument>
+            <tag name="form.type" alias="webbb_bundle_formbundle_fieldtype" />
+        </service>
+        
+        <service id="webbb_form.form.type.generator.formgenerator" class="Webbb\Bundle\FormBundle\Form\Type\Generator\FormGeneratorType">
+            <argument>%webbb_form.field.validation_types%</argument>
+            <tag name="form.type" alias="webbb_bundle_formbundle_formgeneratortype" />
+        </service>
+    </services>
+
+</container>

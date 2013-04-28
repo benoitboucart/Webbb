@@ -1,0 +1,18 @@
+{% extends 'WebbbAdminBundle:Default:index.html.twig' %}
+
+{% block webbbadmin_navbar %}
+	
+{% endblock %}
+
+{% block webbbadmin_main_content %}
+
+{% endblock %}
+
+{% block webbbadmin_javascripts %}
+	{{ parent() }}
+    {% javascripts 
+        '@WebbbWidgetsBundle/Resources/public/webbb/forms/webbb-forms-manytoone.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

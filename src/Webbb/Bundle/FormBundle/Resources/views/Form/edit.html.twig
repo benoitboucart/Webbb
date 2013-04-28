@@ -1,0 +1,28 @@
+{% extends 'WebbbFormBundle::layout.html.twig' %}
+
+{% block webbbadmin_main_content -%}
+    <h1>Form edit</h1>
+
+    <form action="{{ path('form_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+        <input type="hidden" name="_method" value="PUT" />
+        
+        {% include 'WebbbFormBundle:Form/modules/form:form-inner.html.twig' with {'form': edit_form} %}
+        
+        <p>
+            <button type="submit">Edit</button>
+        </p>
+    </form>
+
+    <div class="btn-toolbar">
+        <div class="btn-group record_actions">
+            <a href="{{ path('form') }}" class="btn">
+                Back to the list
+            </a>
+            <form action="{{ path('form_delete', { 'id': entity.id }) }}" method="post" class="btn btn-danger">
+                <input type="hidden" name="_method" value="DELETE" />
+                {{ form_widget(delete_form) }}
+                <button type="submit">Delete</button>
+            </form>
+        </div><!-- /.btn-group -->
+    </div><!-- /.btn-toolbar -->
+{% endblock %}

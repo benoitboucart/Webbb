@@ -1,0 +1,198 @@
+<?php
+
+namespace Webbb\Bundle\FormBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+/**
+ * Form
+ *
+ * @ORM\Table(name="webbb_form")
+ * @ORM\Entity(repositoryClass="Webbb\Bundle\FormBundle\Entity\FormRepository")
+ * @UniqueEntity("name")
+ */
+class Form
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Field", mappedBy="form",cascade={"persist", "remove"})
+     **/
+    private $fields;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Entry", mappedBy="form")
+     **/
+    private $entries;
+
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="thankyoutext", type="text")
+     */
+    private $thankyoutext;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="recipients", type="text")
+     */
+    private $recipients;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="message", type="text")
+     */
+    private $message;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Form
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set thankyoutext
+     *
+     * @param string $thankyoutext
+     * @return Form
+     */
+    public function setThankyoutext($thankyoutext)
+    {
+        $this->thankyoutext = $thankyoutext;
+    
+        return $this;
+    }
+
+    /**
+     * Get thankyoutext
+     *
+     * @return string 
+     */
+    public function getThankyoutext()
+    {
+        return $this->thankyoutext;
+    }
+
+    /**
+     * Set recipients
+     *
+     * @param string $recipients
+     * @return Form
+     */
+    public function setRecipients($recipients)
+    {
+        $this->recipients = $recipients;
+    
+        return $this;
+    }
+
+    /**
+     * Get recipients
+     *
+     * @return string 
+     */
+    public function getRecipients()
+    {
+        return $this->recipients;
+    }
+
+    /**
+     * Set message
+     *
+     * @param string $message
+     * @return Form
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+    
+        return $this;
+    }
+
+    /**
+     * Get message
+     *
+     * @return string 
+     */
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Form
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+}
