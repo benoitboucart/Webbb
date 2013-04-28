@@ -1,8 +1,10 @@
 /public_html/bundles/
-/app/bootstrap.php.cache
+/app/bootstrap*
 /app/cache/*
 /app/logs/*
 /build/
 /vendor/
 /bin/
 /composer.phar
+/vendor/
+/app/config/parameters.yml
